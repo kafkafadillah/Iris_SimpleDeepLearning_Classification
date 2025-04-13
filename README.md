@@ -77,6 +77,8 @@ from tensorflow.keras.layers import Dense
 model = Sequential([
     Dense(16, activation='relu', input_shape=(4,)),  # First hidden layer
     Dense(12, activation='relu'),                    # Second hidden layer
+    Dropout(0.2),                                    # Dropout layer
+    BatchNormalization(momentum=0.9),                # BatchNormalization Layer
     Dense(3, activation='softmax')                   # Output layer
 ])
 
@@ -93,17 +95,16 @@ model.compile(
 
 | Metric        | Training Set | Test Set     |
 |---------------|--------------|--------------|
-| Accuracy      | 96.04%       | 92.05%       |
-| Loss          | 0.2310       | 0.2679       |
+| Accuracy      | 96.04%       | 97.78%       |
+| Loss          | 0.0963       | 0.0189       |
 
 ✅ **The model shows excellent performance**, with no major signs of overfitting. High accuracy suggests the neural network successfully learned the patterns in the feature set.
 
 ---
 
-## 📈 Suggestions for Improvement
+# 📈 Suggestions for Improvement
 
 - Add a confusion matrix for deeper evaluation
-- Include dropout layers for regularization
-- Hyperparameter tuning (e.g. neurons, learning rate, epochs)
+- Hyperparameter tuning (e.g. neuron, epochs)
 - Compare with other models: SVM, KNN, Decision Tree
 - Use cross-validation for more robust performance evaluation
